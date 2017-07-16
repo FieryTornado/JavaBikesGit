@@ -22,7 +22,7 @@ public class Control
 	}
 
 	// Method to create customer
-	public Customer CreateCustomer() 
+	public void CreateCustomer() 
 	{
 		//Using a do while loop so it repeats until criteria is fulfilled
 		do
@@ -67,7 +67,7 @@ public class Control
 		cust.setPassword(input.nextLine());
 			
 		System.out.println("Congratulations! You have created an account with Java Bikes");
-		return cust;
+		cust.writeToFile(details);;
 	}
 	
 	public void LoginMenu() 
@@ -82,12 +82,8 @@ public class Control
 		case 1:
 		Login();
 		break;
-		
-		case 2:
-			BrowseBikes();
-			break;
 			
-		case 3:
+		case 2:
 			System.exit(0);
 			break;
 			default:
