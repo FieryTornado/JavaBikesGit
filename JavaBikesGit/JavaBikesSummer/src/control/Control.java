@@ -10,7 +10,9 @@ public class Control
 	Scanner input = new Scanner(System.in);
 	String details;
 	Customer cust = new Customer();
+	CustomerView custView = new CustomerView();
 	
+	private ArrayList<Customer>customerArrayList = new ArrayList<Customer>();
 	//private ArrayList<Product>ProductList = new Product();
 	
 
@@ -56,24 +58,20 @@ public class Control
 		}
 	}
 	while (details == null);
-		
-		
-		
-		
+				
 		System.out.println("Please enter a username");
 		if(details.matches("^[a-zA-Z0-9_.-]{5,}$"))
 		cust.setUsername(input.nextLine());
-		
-		
+				
 		System.out.println("Please enter a password");
 		cust.setPassword(input.nextLine());
-		// add to database via ctrl
-		
+			
 		System.out.println("Congratulations! You have created an account with Java Bikes");
 		return cust;
 	}
 	
-	public void LoginMenu() {
+	public void LoginMenu() 
+	{
 		do
 		{
 			try
@@ -103,12 +101,10 @@ public class Control
 				break;
 			}
 		}
-		while (true);
-		
+		while (true);		
 	}
 
-
-	public Customer Login() 
+	public void Login() 
 	{
 		String username;
 		String password;
@@ -119,21 +115,31 @@ public class Control
 			System.out.println("You have exceeded the number of login attemps. Please ty again later");
 			System.exit(0);
 		}
-		
+		boolean loggedIn = false;
+		do		
 		{
+			attempt++;
 			System.out.println("Please enter your username");
 			username = input.next();
 		
 			System.out.println("Please enter your password");
 			password = input.next();
 			
-			// check in the database
-			// login success do smth\
-			// login fail do smth else
-			// update loggedIn state to true;
+			for(int i = 0; i<customerArrayList.size() && !loggedIn; i++)
+			{
+				if(username.equals(customerArrayList.get(i).getUsername()) &&password.equals(customerArrayList.get(i).getPassword()))
+				{
+					System.out.println("You have logged in. Welcome" + username + ".");
+					loggedIn = true;
+				}
+			}
+			if(!loggedIn)
+			{
+				System.out.println("Wrong username or password: Please try again");
+			}
 		}
-		return null;				
-
+		while (attempt < 3 && !loggedIn);
+		custView.customerMenu();
 }
 
 public void BrowseBikes() 

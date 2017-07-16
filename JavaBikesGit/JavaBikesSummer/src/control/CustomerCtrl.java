@@ -13,12 +13,14 @@ public class CustomerCtrl
 	private ArrayList<Customer>CustomerList;
 	private ArrayList<Product>ProductList;
 	
-	public static void CreateCustomer() {
+	public static void CreateCustomer() 
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
-	public static void Login() {
+	public static void Login() 
+	{
 		// TODO Auto-generated method stub
 		
 	}

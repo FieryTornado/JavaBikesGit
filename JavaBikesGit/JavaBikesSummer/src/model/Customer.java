@@ -1,6 +1,9 @@
 package model;
 
-public class Customer {
+import database.ReadWrite;
+
+public class Customer 
+{
 	private String firstName, lastName, username, password;
 
 	public String getFirstName() 
@@ -41,5 +44,10 @@ public class Customer {
 	public void setPassword(String password) 
 	{
 		this.password = password;
+	}
+
+	public void writeToFile(String details) 
+	{
+		ReadWrite.WriteDetails("customer.txt", details);
 	}
 }

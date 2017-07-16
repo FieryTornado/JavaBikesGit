@@ -1,22 +1,22 @@
 package main;
 
 import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 import control.Control;
-
+import model.Customer;
 
 public class MainMethod 
 {
 	
 	static Scanner input = new Scanner(System.in);
-	
 	static Control ctrl = new Control();
+	static String details;
+	
+	static Customer cust = new Customer();
 	
 	public static void main(String[] args) throws IOException 
-	{
-		
+	{		
 		// print information "welcome screen"
 		printwelcomeMenu();
 		{			
@@ -31,10 +31,14 @@ public class MainMethod
 		{
 		case 1:
 			// create customer
-			ctrl.CreateCustomer();
+			Customer cust = new Customer();
+			cust = ctrl.CreateCustomer();
+			String details = cust.getFirstName() + "." + cust.getLastName() + "." + cust.getLastName()
+			+ "." + cust.getUsername() + "." + cust.getLastName() + ".";
+			
+			cust.writeToFile(details);
 			loginMenu();
-			break;
-		
+			break;		
 			
 		case 2:
 			// login
@@ -58,8 +62,7 @@ public class MainMethod
 			System.out.println("\nChoose a number from 1 to 4: ");
 			input.next();
 			break;
-	}
-		
+	}		
 	}
 	while (true);
 }
@@ -73,8 +76,8 @@ public class MainMethod
 			System.out.println("|4| End Session" );			
 	}
 	
-	private static void loginMenu() {
-		
+	private static void loginMenu() 
+	{		
 		printloginMenu();
 		
 		do
@@ -97,10 +100,10 @@ public class MainMethod
 					break;
 					
 					default:
-						break;
-					
+						break;					
 			}
 			}
+			
 			catch (InputMismatchException e)
 			{
 				System.out.println("\nChoose a number from 1 to 3");
@@ -108,16 +111,14 @@ public class MainMethod
 				break;
 			}
 		}
-		while (true);
-		
+		while (true);		
 	}
 
-	private static void printloginMenu() {
+	private static void printloginMenu() 
+	{
 		System.out.println("\nChoose one of the following numbers to continue");
-		System.out.println("\nEnter 1 to login");
-		System.out.println("Enter 2 to browse bikes");
-		System.out.println("Enter 3 to exit");
-		
+		System.out.println("\nEnter |1| to login");
+		System.out.println("Enter |2| to browse bikes");
+		System.out.println("Enter |3| to exit");		
 	}
-
 }
