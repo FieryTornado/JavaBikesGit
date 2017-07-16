@@ -11,7 +11,7 @@ public class Control
 	String details;
 	Customer cust = new Customer();
 	
-	private ArrayList<Product>ProductList = new Product();
+	//private ArrayList<Product>ProductList = new Product();
 	
 
 	public void printCreateCustomer() 
@@ -72,6 +72,40 @@ public class Control
 		System.out.println("Congratulations! You have created an account with Java Bikes");
 		return cust;
 	}
+	
+	public void LoginMenu() {
+		do
+		{
+			try
+			{
+		int selectLoginMenu = input.nextInt();
+		switch(selectLoginMenu)
+		{
+		case 1:
+		Login();
+		break;
+		
+		case 2:
+			BrowseBikes();
+			break;
+			
+		case 3:
+			System.exit(0);
+			break;
+			default:
+				break;
+		}
+			}
+			catch (InputMismatchException e)
+			{
+				System.out.println("Choose a number from 1 to 3");
+				input.next();
+				break;
+			}
+		}
+		while (true);
+		
+	}
 
 
 	public Customer Login() 
@@ -102,13 +136,14 @@ public class Control
 
 }
 
-	public void BrowseBikes() {
+public void BrowseBikes() 
+ {
+ 
 		// TODO Auto-generated method stub
-		for (int i = 0; i <ProductList.size(); i++)
-		{
-			System.out.println(ProductList.get(i));
-		}
+		//for (int i = 0; i <ProductList.size(); i++)
+		//{
+		//	System.out.println(ProductList.get(i));
+		//}
 		
 	}
-
 }
