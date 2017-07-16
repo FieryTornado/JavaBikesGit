@@ -91,10 +91,6 @@ public class MainMethod
 					break;
 					
 				case 2:
-					ctrl.BrowseBikes();
-					break;
-					
-				case 3:
 					System.exit(0);
 					break;
 					

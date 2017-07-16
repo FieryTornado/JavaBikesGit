@@ -2,6 +2,8 @@ package control;
 
 import java.io.*;
 import java.util.*;
+
+import database.CustomerDB;
 import model.*;
 import view.*;
 
@@ -10,10 +12,9 @@ public class Control
 	Scanner input = new Scanner(System.in);
 	String details;
 	Customer cust = new Customer();
-	CustomerView custView = new CustomerView();
 	
 	private ArrayList<Customer>customerArrayList = new ArrayList<Customer>();
-	//private ArrayList<Product>ProductList = new Product();
+	//private ArrayList<Product>ProductList = new ArrayList<Product>();
 	
 
 	public void printCreateCustomer() 
@@ -67,7 +68,7 @@ public class Control
 		cust.setPassword(input.nextLine());
 			
 		System.out.println("Congratulations! You have created an account with Java Bikes");
-		cust.writeToFile(details);;
+		customerArrayList.add(cust);
 	}
 	
 	public void LoginMenu() 
@@ -125,7 +126,7 @@ public class Control
 			{
 				if(username.equals(customerArrayList.get(i).getUsername()) &&password.equals(customerArrayList.get(i).getPassword()))
 				{
-					System.out.println("You have logged in. Welcome" + username + ".");
+					System.out.println("You have logged in. Welcome " + username + ".");
 					loggedIn = true;
 				}
 			}
@@ -135,17 +136,81 @@ public class Control
 			}
 		}
 		while (attempt < 3 && !loggedIn);
-		custView.customerMenu();
+		customerMenu();
 }
+	
+	public void customerMenu() 
+	{
+		printcustomerMenu();
+		
+		int selectcustomerMenu = input.nextInt();
+		switch (selectcustomerMenu)
+		{		
+		case 1:
+			BrowseBikes();
+			printBikes();
+			customerMenu();
+			break;
+			
+		case 2:
+			promotions();
+			printpromotions();
+			customerMenu();
+			break;
+			
+		case 3:
+			bookBike();
+			customerMenu();
+			
+		case 4:
+			System.exit(0);
+			
+			default:
+				System.out.println("Wrong input: Choose a number from 1 to 4 to continue");
+				input.next();
+				break;			
+		}
+	}
+
+	private void printcustomerMenu() 
+	{
+		System.out.println("\nChoose one of the following numbers to continue: ");
+		System.out.println("\n|1| Browse bikes");
+		System.out.println("|2|See available promotions");
+		System.out.println("|3| Book a bike");
+		System.out.println("|4| Exit process");		
+
+		}
 
 public void BrowseBikes() 
  {
- 
-		// TODO Auto-generated method stub
 		//for (int i = 0; i <ProductList.size(); i++)
-		//{
-		//	System.out.println(ProductList.get(i));
-		//}
-		
+		{
+		//System.out.println(ProductList.get(i));
+		}		
 	}
+
+public String promotions() 
+{
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public void bookBike() 
+{
+	// TODO Auto-generated method stub
+	
+}
+
+public void printBikes() 
+{
+	// TODO Auto-generated method stub
+	
+}
+
+public void printpromotions() 
+{
+	// TODO Auto-generated method stub
+	}
+
 }
