@@ -1,11 +1,8 @@
 package control;
 
-import java.io.*;
 import java.util.*;
 
-import database.CustomerDB;
 import model.*;
-import view.*;
 
 public class Control 
 {
@@ -38,7 +35,6 @@ public class Control
 		else
 		{
 			System.out.println("Please use English letters");
-			details = null;
 		}
 		}
 		while (details == null);
@@ -55,7 +51,6 @@ public class Control
 		else
 		{
 			System.out.println("Please use English letters");
-			details = null;
 		}
 	}
 	while (details == null);
@@ -69,6 +64,7 @@ public class Control
 			
 		System.out.println("Congratulations! You have created an account with Java Bikes");
 		customerArrayList.add(cust);
+		cust.writeToFile(details);
 	}
 	
 	public void LoginMenu() 
@@ -176,7 +172,7 @@ public class Control
 	{
 		System.out.println("\nChoose one of the following numbers to continue: ");
 		System.out.println("\n|1| Browse bikes");
-		System.out.println("|2|See available promotions");
+		System.out.println("|2| See available promotions");
 		System.out.println("|3| Book a bike");
 		System.out.println("|4| Exit process");		
 

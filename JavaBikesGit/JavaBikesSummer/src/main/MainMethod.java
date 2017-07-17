@@ -14,6 +14,7 @@ public class MainMethod
 	static String details;
 	
 	static Customer cust = new Customer();
+	private static ArrayList<Customer>customerArrayList = new ArrayList<Customer>();
 	
 	public static void main(String[] args) throws IOException 
 	{		
@@ -32,8 +33,8 @@ public class MainMethod
 			// create customer
 			Customer cust = new Customer();
 			ctrl.CreateCustomer();
-			String details = cust.getFirstName() + "." + cust.getLastName() + "." + cust.getLastName()
-			+ "." + cust.getUsername() + "." + cust.getLastName() + ".";
+			String details = cust.getFirstName() + ";" + cust.getLastName()
+			+ ";" + cust.getUsername() + ";" + cust.getLastName() + ";";
 			
 			cust.writeToFile(details);
 			loginMenu();
