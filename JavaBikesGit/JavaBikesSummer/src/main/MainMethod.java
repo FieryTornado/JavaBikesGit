@@ -19,8 +19,7 @@ public class MainMethod
 	{		
 		// print information "welcome screen"
 		printwelcomeMenu();
-		{			
-		}
+		{}
 	
 	do
 	{
@@ -32,7 +31,7 @@ public class MainMethod
 		case 1:
 			// create customer
 			Customer cust = new Customer();
-			cust = ctrl.CreateCustomer();
+			ctrl.CreateCustomer();
 			String details = cust.getFirstName() + "." + cust.getLastName() + "." + cust.getLastName()
 			+ "." + cust.getUsername() + "." + cust.getLastName() + ".";
 			
@@ -60,7 +59,7 @@ public class MainMethod
 		catch (InputMismatchException e)
 		{
 			System.out.println("\nChoose a number from 1 to 4: ");
-			input.next();
+			input.nextLine();
 			break;
 	}		
 	}
@@ -92,10 +91,6 @@ public class MainMethod
 					break;
 					
 				case 2:
-					ctrl.BrowseBikes();
-					break;
-					
-				case 3:
 					System.exit(0);
 					break;
 					
@@ -118,7 +113,6 @@ public class MainMethod
 	{
 		System.out.println("\nChoose one of the following numbers to continue");
 		System.out.println("\nEnter |1| to login");
-		System.out.println("Enter |2| to browse bikes");
-		System.out.println("Enter |3| to exit");		
+		System.out.println("Enter |2| to exit");		
 	}
 }

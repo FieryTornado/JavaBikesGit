@@ -8,7 +8,6 @@ import view.*;
 public class CustomerCtrl 
 {
 	Control customerCtrl = new Control();
-	CustomerView customerV;
 	
 	private ArrayList<Customer>CustomerList;
 	private ArrayList<Product>ProductList;
