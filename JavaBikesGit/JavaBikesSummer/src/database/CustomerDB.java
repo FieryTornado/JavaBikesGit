@@ -6,12 +6,12 @@ import model.*;
 public class CustomerDB 
 {
 	
-	private ArrayList<Customer>customerArrayList = new ArrayList<Customer>();
+	private ArrayList<Customer>customerList = new ArrayList<Customer>();
 	private ArrayList<Manager>ManagerList = new ArrayList<Manager>();
 	
-	public void customerArrayList()
+	public void customerList()
 	{
-		customerArrayList.add(new Customer());
+		customerList.add(new Customer());
 	}
 	
 	public void ManagerList()

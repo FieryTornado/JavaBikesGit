@@ -3,7 +3,7 @@ package main;
 import java.io.IOException;
 import java.util.*;
 
-import control.Control;
+import control.*;
 import model.Customer;
 
 public class MainMethod 
@@ -11,10 +11,10 @@ public class MainMethod
 	
 	static Scanner input = new Scanner(System.in);
 	static Control ctrl = new Control();
+	static BikeCtrl bikeCtrl = new BikeCtrl();
 	static String details;
 	
 	static Customer cust = new Customer();
-	private static ArrayList<Customer>customerArrayList = new ArrayList<Customer>();
 	
 	public static void main(String[] args) throws IOException 
 	{		
@@ -31,12 +31,9 @@ public class MainMethod
 		{
 		case 1:
 			// create customer
-			Customer cust = new Customer();
-			ctrl.CreateCustomer();
-			String details = cust.getFirstName() + ";" + cust.getLastName()
-			+ ";" + cust.getUsername() + ";" + cust.getLastName() + ";";
-			
-			cust.writeToFile(details);
+			ctrl.CreateCustomer();			
+			ctrl.writeToFile();
+			ctrl.loadDB();
 			loginMenu();
 			break;		
 			
@@ -47,7 +44,7 @@ public class MainMethod
 			
 		case 3:
 			//browse bikes
-			ctrl.BrowseBikes();
+			bikeCtrl.BrowseBikes();
 			break;
 		case 4:
 			// exit
@@ -70,7 +67,7 @@ public class MainMethod
 	private static void printwelcomeMenu() 
 	{		
 			System.out.println("Welcome to Java Bikes: Choose a number from 1 to 4 to begin");
-			System.out.println("|1| Create an account" );
+			System.out.println("\n|1| Create an account" );
 			System.out.println("|2| Login" );
 			System.out.println("|3| Browse bikes" );
 			System.out.println("|4| End Session" );			
@@ -89,6 +86,7 @@ public class MainMethod
 				{
 				case 1:
 					ctrl.Login();
+					loginMenu();
 					break;
 					
 				case 2:
