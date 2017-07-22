@@ -11,8 +11,16 @@ public class Control
 	String details;
 	Customer cust = new Customer();
 	CustomerCtrl custCtrl = new CustomerCtrl();
+	ManagerCtrl admin = new ManagerCtrl();
 	
-	private ArrayList<Customer>customerList = new ArrayList<Customer>();	
+	private ArrayList<Customer>customerList = new ArrayList<Customer>();
+	private ArrayList<Manager>managerList = new ArrayList<Manager>();
+	
+	//Constructor to load arrayList for checking users and logging in
+	public Control()
+	{
+		customerList = ReadWrite.getcustomerList();
+	}
 
 	public void printCreateCustomer() 
 	{
@@ -20,7 +28,7 @@ public class Control
 	}
 
 	// Method to create customer
-	public void CreateCustomer() 
+	public Customer CreateCustomer() 
 	{
 		//Using a do while loop so it repeats until criteria is fulfilled
 		do
@@ -77,18 +85,19 @@ public class Control
 		while (details == null);
 			
 		System.out.println("Congratulations! You have created an account with Java Bikes");
+		return cust;
 	}
 	
-	private String checkExistingUsers(Scanner input) 
+	public String checkExistingUsers(Scanner input) 
 	{
-		String users = input.nextLine();
+		String user = input.nextLine();
 		for (int i =0; i<customerList.size(); i++)
-			if (customerList.get(i).getUsername().equals(users) || users.length() < 5)
+			if (customerList.get(i).getUsername().equals(user) || user.length() < 5)
 			{
 				System.out.println("Invalid input or user already exists. Please try again: ");
 				return checkExistingUsers(input);
 			}
-		return users;
+		return user;
 	}
 
 	public void LoginMenu() 
@@ -101,7 +110,7 @@ public class Control
 		switch(selectLoginMenu)
 		{
 		case 1:
-		Login();
+		customerLogin();
 		break;
 			
 		case 2:
@@ -121,7 +130,7 @@ public class Control
 		while (true);		
 	}
 
-	public void Login() 
+	public void customerLogin() 
 	{
 		String username;
 		String password;
@@ -160,16 +169,52 @@ public class Control
 		while (attempt < 3 && !logIn);
 		custCtrl.customerMenu();
 }
-	public void writeToFile() 
+	public void writeToFile(String details) 
 	{
-		String details = cust.getFirstName() + ";" + cust.getLastName()
-		+ ";" + cust.getUsername() + ";" + cust.getPassword() + ";";
 		ReadWrite.WriteDetails("customer.txt", details);
 	}	
 
-public void loadDB() {
-	customerList = ReadWrite.getCustomerList();
+
+	public void Admin() 
+	{
+		String username;
+		String password;
+		
+		int attempt = 0;
+		if (attempt == 2)
+		{
+			System.out.println("You have exceeded login attempts and have been shut out. Please try again later");
+			System.exit(0);
+		}
+		boolean logIn = false;
+		do
+		{
+			attempt++;
+			System.out.println("Enter your username: ");
+			username = input.nextLine();
+			System.out.println("Enter you password: ");
+			password = input.nextLine();
+			
+			for (int i =0; i < managerList.size() &&!logIn; i++)
+			{
+				if (username.equals(managerList.get(i).getUsername()) &&password.equals(managerList.get(i).getPassword()))
+				{
+					System.out.println("You are logged in. Welcome " + username + ";");
+					logIn = true;
+				}
+			}
+			if(!logIn)
+			{
+				System.out.println("Wrong input. Please try again");
+			}
+			
+		}
+		while (attempt < 3 && !logIn);
+		admin.ManagerMenu();		
+	}
+	
+	public void loadDB() {
+	customerList = ReadWrite.getcustomerList();
 	
 }
-
 }

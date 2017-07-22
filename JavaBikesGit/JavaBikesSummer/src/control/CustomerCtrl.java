@@ -8,17 +8,11 @@ import model.*;
 public class CustomerCtrl 
 {
 	Scanner input = new Scanner(System.in);
-	BikeCtrl bikeCtrl = new BikeCtrl();
+	ProductCtrl bikeCtrl = new ProductCtrl();	
 	
+	//private ArrayList<Customer>CustomerList;
+	//private ArrayList<Product>ProductList;
 	
-	private ArrayList<Customer>CustomerList;
-	private ArrayList<Product>ProductList;
-	
-	public static void CreateCustomer() 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 
 	public static void Login() 
 	{

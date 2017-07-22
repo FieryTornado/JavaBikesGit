@@ -7,7 +7,7 @@ public class CustomerDB
 {
 	
 	private ArrayList<Customer>customerList = new ArrayList<Customer>();
-	private ArrayList<Manager>ManagerList = new ArrayList<Manager>();
+	private ArrayList<Manager>managerList = new ArrayList<Manager>();
 	
 	public void customerList()
 	{
@@ -16,6 +16,6 @@ public class CustomerDB
 	
 	public void ManagerList()
 	{
-		ManagerList.add(new Manager());
+		managerList.add(new Manager("admin", "admin111"));
 	}
 }

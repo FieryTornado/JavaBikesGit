@@ -11,7 +11,7 @@ public class MainMethod
 	
 	static Scanner input = new Scanner(System.in);
 	static Control ctrl = new Control();
-	static BikeCtrl bikeCtrl = new BikeCtrl();
+	static ProductCtrl bikeCtrl = new ProductCtrl();
 	static String details;
 	
 	static Customer cust = new Customer();
@@ -31,22 +31,30 @@ public class MainMethod
 		{
 		case 1:
 			// create customer
-			ctrl.CreateCustomer();			
-			ctrl.writeToFile();
+			Customer customer = new Customer();
+			customer = ctrl.CreateCustomer();
+			String details = customer.getFirstName() + ";" + customer.getLastName()
+			+ ";" + customer.getUsername() + ";" + customer.getPassword() + ";";
+			
+			ctrl.writeToFile(details);
 			ctrl.loadDB();
 			loginMenu();
 			break;		
 			
 		case 2:
 			// login
-			ctrl.Login();
+			ctrl.customerLogin();
+			break;
+		case 3:
+			// login
+			ctrl.Admin();
 			break;
 			
-		case 3:
+		case 4:
 			//browse bikes
 			bikeCtrl.BrowseBikes();
 			break;
-		case 4:
+		case 5:
 			// exit
 			System.exit(0);
 			break;
@@ -68,9 +76,10 @@ public class MainMethod
 	{		
 			System.out.println("Welcome to Java Bikes: Choose a number from 1 to 4 to begin");
 			System.out.println("\n|1| Create an account" );
-			System.out.println("|2| Login" );
-			System.out.println("|3| Browse bikes" );
-			System.out.println("|4| End Session" );			
+			System.out.println("|2| Customer Login" );
+			System.out.println("|3| Admin Login" );
+			System.out.println("|4| Browse bikes" );
+			System.out.println("|5| End Session" );			
 	}
 	
 	private static void loginMenu() 
@@ -85,7 +94,7 @@ public class MainMethod
 				switch(selectloginMenu)
 				{
 				case 1:
-					ctrl.Login();
+					ctrl.customerLogin();
 					loginMenu();
 					break;
 					

@@ -1,15 +1,25 @@
 package model;
 
 public class Product {
-	protected String name, size, colour;
+	protected String name, colour, size;
+	protected int price;
 
-	public Product (String name, String size, String colour)
+	public Product (String name, String colour, String size, int price)
 	{
 		this.name = name;
-		this.size = size;
 		this.colour = colour;
+		this.price = price;
+		this.size = size;
 	}
 	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -33,5 +43,4 @@ public class Product {
 	public void setColour(String colour) {
 		this.colour = colour;
 	}
-
 }

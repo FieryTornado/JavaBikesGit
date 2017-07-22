@@ -22,7 +22,7 @@ public class ReadWrite {
 		return customerdetails;		
 	}
 	
-	public static ArrayList<Customer> getCustomerList()
+	public static ArrayList<Customer> getcustomerList()
 	{
 		ArrayList<Customer> customerList = new ArrayList<Customer>();
 		Scanner input = readDetails("customer.txt");		
@@ -46,7 +46,8 @@ public class ReadWrite {
 		{
 			System.out.println("Error writing to file" + file + ";");
 		}			
-	}	
+	}
+	
 	
 	public static Scanner readDetails(String file)
 	{	
@@ -61,5 +62,31 @@ public class ReadWrite {
 		System.out.println("Error reading file" + file + ";");
 	}
 	return input;
+	}
+
+	
+	public static Manager getManager(String line)
+	{
+		Manager managerFromFile = new Manager();
+		String[] values = line.split(";");
+		
+		managerFromFile.setUsername(values[0]);
+		managerFromFile.setPassword(values[1]);
+		
+		return managerFromFile;
+	}
+	
+	//File to read and write manager details
+	public static ArrayList<Manager> getManagerDetails()
+	{
+		ArrayList<Manager> managerList = new ArrayList<Manager>();
+		Scanner input = readDetails("manager.txt");
+		
+		while (input.hasNextLine())
+		{
+			managerList.add(getManager(input.nextLine()));
+		}
+		
+		return managerList;
 	}
 	}
