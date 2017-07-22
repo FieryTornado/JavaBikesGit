@@ -2,19 +2,28 @@ package control;
 
 import java.util.ArrayList;
 
+//import database.ReadWrite;
 import model.Product;
 
 public class ProductCtrl {
-private ArrayList<Product>ProductList = new ArrayList<Product>();
+	
+    private ArrayList<Product>productList = new ArrayList<Product>();
+    
+    public ProductCtrl()
+    {
+    	//productList = ReadWrite.getproductList();
+    }
 	
 	public void BrowseBikes() 
 	 {
-			
+			for (int i = 0; i < productList.size(); i++)
+			{
+				System.out.println(productList.get(i));
+			}
 		}
 
 	public String promotions() 
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -25,14 +34,14 @@ private ArrayList<Product>ProductList = new ArrayList<Product>();
 			System.out.println(product.getSize());
 		}
 		*/
-		return ProductList;
+		return productList;
 	}
 
 	public void printBikes() 
 	{
-		for (int i = 0; i <ProductList.size(); i++)
+		for (int i = 0; i <productList.size(); i++)
 		{
-		System.out.println(ProductList.get(i));
+		System.out.println(productList.get(i));
 		}		
 		
 	}

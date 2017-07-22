@@ -1,24 +1,12 @@
 package control;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-
-import model.*;
 
 public class CustomerCtrl 
 {
 	Scanner input = new Scanner(System.in);
 	ProductCtrl bikeCtrl = new ProductCtrl();	
-	
-	//private ArrayList<Customer>CustomerList;
-	//private ArrayList<Product>ProductList;
-	
 
-	public static void Login() 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 	public void customerMenu() 
 	{
 		printcustomerMenu();

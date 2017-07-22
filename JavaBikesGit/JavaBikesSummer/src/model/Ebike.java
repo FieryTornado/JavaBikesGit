@@ -4,9 +4,9 @@ public class Ebike extends Product
 {
 	private String batteryCapacity;
 
-	public Ebike(String name, String size, String colour, int price, String batteryCapacity) 
+	public Ebike(String name, String size, String colour, String price, String Id, String batteryCapacity) 
 	{
-		super (name, size, colour, price);
+		super (name, size, colour, price, Id);
 		this.batteryCapacity = batteryCapacity;
 	}
 

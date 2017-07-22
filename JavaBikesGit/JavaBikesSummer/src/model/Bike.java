@@ -5,9 +5,9 @@ public class Bike extends Product
 	
 	private String gears;
 
-	public Bike(String name, String size, String colour, int price, String gears) 
+	public Bike(String name, String size, String colour, String price, String Id, String gears) 
 	{
-		super (name, size, colour, price);
+		super (name, size, colour, price, Id);
 		this.gears = gears;
 	}
 

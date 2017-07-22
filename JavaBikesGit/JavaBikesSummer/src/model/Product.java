@@ -1,22 +1,30 @@
 package model;
 
 public class Product {
-	protected String name, colour, size;
-	protected int price;
+	protected String name, colour, size, price, Id;
 
-	public Product (String name, String colour, String size, int price)
+	public Product (String name, String colour, String size, String price, String Id)
 	{
 		this.name = name;
 		this.colour = colour;
 		this.price = price;
 		this.size = size;
+		this.Id = Id;
 	}
 	
-	public int getPrice() {
+	public String getId() {
+		return Id;
+	}
+
+	public void setId(String id) {
+		Id = id;
+	}
+
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 

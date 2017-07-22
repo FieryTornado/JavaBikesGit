@@ -89,4 +89,71 @@ public class ReadWrite {
 		
 		return managerList;
 	}
+	
+	public static ArrayList<Product> readProduct()
+	{
+		Scanner scanner = null;
+		try
+		{
+			scanner = new Scanner(new File("products.txt"));
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println("Error finding products.txt");
+		}
+		
+		ArrayList <Product> productList = new ArrayList<Product>();
+		while (scanner.hasNextLine())
+		{
+			String values = scanner.nextLine();
+			String valueList[] = values.split(";");
+		
+		//differentiating bikes from Ebikes
+		if (valueList[0].equals("Bike"))
+		{
+			String gears =(valueList[5]);
+			
+			productList.add(new Bike(valueList[0], valueList[1], valueList[2], valueList[3], valueList[4], gears));
+		}
+		else if (valueList[0].equals("Ebike"))
+		{
+			String charge = (valueList[5]);
+					
+			productList.add(new Ebike(valueList[0], valueList[1], valueList[2], valueList[3], valueList[4], charge));
+		}
+	}
+	scanner.close();
+	return productList;
+	}
+	
+	public static ArrayList<Product> printBike()
+	{
+		ArrayList<Product> oneLineList = new ArrayList<Product>();
+		
+		Scanner oneLine = readDetails("products.txt");
+		
+		while (oneLine.hasNextLine())
+		{
+			oneLineList.addAll(readProduct());
+		}
+		for (int i = oneLine.nextInt(); --i < oneLineList.size();)
+				{
+					System.out.println(oneLineList.get(i));
+				}
+		return oneLineList;
+	}
+
+	/*public static ArrayList<Product> getproductList() {
+		ArrayList<Product> productList = new ArrayList<Product>();
+		Scanner input = readDetails("product.txt");
+		
+		while (input.hasNextLine())
+		{
+			productList.add(getProduct(input.nextLine()));
+		}
+		return productList;
+	}
+	*/
+
+	
 	}
