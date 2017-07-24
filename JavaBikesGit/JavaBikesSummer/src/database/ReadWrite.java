@@ -90,6 +90,71 @@ public class ReadWrite {
 		return managerList;
 	}
 	
+	public static ActiveUser getActiveUser(String line)
+	{
+		ActiveUser activeUserFromFile = new ActiveUser();
+		String[] value = line.split(";");
+		
+		activeUserFromFile.setActiveUser(value[0]);
+		return activeUserFromFile;
+	}
+	
+	public static ArrayList<ActiveUser> getAllActiveUserDetails()
+	{
+		ArrayList<ActiveUser> activeUserList = new ArrayList<ActiveUser>();
+		Scanner input = readDetails("activeUser.txt");
+		
+		while (input.hasNextLine())
+		{
+		}
+		return activeUserList;
+	}
+	
+	public static void findActiveUser() throws FileNotFoundException, IOException
+	{
+		try (BufferedReader br = new BufferedReader(new FileReader("activeUser.txt")))
+		{
+			String line = null;
+			while ((line = br.readLine()) !=null)
+			{
+				System.out.println("Thank you for your booking " + line + ".");
+			}
+		}
+	}
+	
+	public static void wipeActiveUser()
+	{
+		try
+		{
+			PrintWriter pwWipe = new PrintWriter("activeUser.txt");
+			pwWipe.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println("Error finding activeuser.txt: ");
+		}
+	}
+	
+	
+	public static ArrayList<Product> printBike()
+	{
+		ArrayList<Product> oneLineList = new ArrayList<Product>();
+		
+		Scanner oneLine = readDetails("products.txt");
+		
+		while (oneLine.hasNextLine())
+		{
+			oneLineList.addAll(readProduct());
+		}
+		for (int i = oneLine.nextInt(); --i < oneLineList.size();)
+				{
+					System.out.println(oneLineList.get(i));
+					break;
+				}
+		return oneLineList;
+	}
+	
+	
 	public static ArrayList<Product> readProduct()
 	{
 		Scanner scanner = null;
@@ -103,7 +168,7 @@ public class ReadWrite {
 		}
 		
 		ArrayList <Product> productList = new ArrayList<Product>();
-		while (scanner.hasNextLine())
+		while (scanner.hasNext())
 		{
 			String values = scanner.nextLine();
 			String valueList[] = values.split(";");
@@ -124,23 +189,6 @@ public class ReadWrite {
 	}
 	scanner.close();
 	return productList;
-	}
-	
-	public static ArrayList<Product> printBike()
-	{
-		ArrayList<Product> oneLineList = new ArrayList<Product>();
-		
-		Scanner oneLine = readDetails("products.txt");
-		
-		while (oneLine.hasNextLine())
-		{
-			oneLineList.addAll(readProduct());
-		}
-		for (int i = oneLine.nextInt(); --i < oneLineList.size();)
-				{
-					System.out.println(oneLineList.get(i));
-				}
-		return oneLineList;
 	}
 
 	/*public static ArrayList<Product> getproductList() {

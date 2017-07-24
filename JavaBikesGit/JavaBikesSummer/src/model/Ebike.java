@@ -1,5 +1,7 @@
 package model;
 
+import database.ReadWrite;
+
 public class Ebike extends Product 
 {
 	private String batteryCapacity;
@@ -18,6 +20,17 @@ public class Ebike extends Product
 	public void setBatteryCapacity(String batteryCapacity) 
 	{
 		this.batteryCapacity = batteryCapacity;
+	}
+	
+	public String toString()
+	{
+		return "ID: " + Id + " --- " + "Bike Name: " + name + ", Size: " + size + ", Colour: " + colour + ", Price: "
+				+ price + ", Charge Time: " + batteryCapacity;
+	}
+	
+	public void writeToFile(String details)
+	{
+		ReadWrite.WriteDetails("products.txt", details);
 	}
 
 }

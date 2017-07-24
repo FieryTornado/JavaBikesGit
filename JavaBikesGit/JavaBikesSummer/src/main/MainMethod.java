@@ -11,7 +11,7 @@ public class MainMethod
 	
 	static Scanner input = new Scanner(System.in);
 	static Control ctrl = new Control();
-	static ProductCtrl bikeCtrl = new ProductCtrl();
+	static ProductCtrl productCtrl = new ProductCtrl();
 	static String details;
 	
 	static Customer cust = new Customer();
@@ -20,7 +20,6 @@ public class MainMethod
 	{		
 		// print information "welcome screen"
 		printwelcomeMenu();
-		{}
 	
 	do
 	{
@@ -38,22 +37,32 @@ public class MainMethod
 			
 			ctrl.writeToFile(details);
 			ctrl.loadDB();
-			loginMenu();
+			printwelcomeMenu();
 			break;		
 			
 		case 2:
 			// login
 			ctrl.customerLogin();
+			printwelcomeMenu();
 			break;
 		case 3:
 			// login
 			ctrl.Admin();
 			break;
-			
+		
 		case 4:
 			//browse bikes
-			bikeCtrl.BrowseBikes();
+			productCtrl.AvailableBikes();
+			productCtrl.printBikes();
+			
+			int selectBikeMenu = input.nextInt();
+			switch (selectBikeMenu)
+			{
+			case 1:
+			printwelcomeMenu();
 			break;
+			}
+
 		case 5:
 			// exit
 			System.exit(0);
@@ -67,12 +76,12 @@ public class MainMethod
 			System.out.println("\nChoose a number from 1 to 4: ");
 			input.nextLine();
 			break;
-	}		
+	}	
 	}
 	while (true);
-}
+	}
 
-	private static void printwelcomeMenu() 
+	public static void printwelcomeMenu() 
 	{		
 			System.out.println("Welcome to Java Bikes: Choose a number from 1 to 4 to begin");
 			System.out.println("\n|1| Create an account" );
@@ -80,47 +89,5 @@ public class MainMethod
 			System.out.println("|3| Admin Login" );
 			System.out.println("|4| Browse bikes" );
 			System.out.println("|5| End Session" );			
-	}
-	
-	private static void loginMenu() 
-	{		
-		printloginMenu();
-		
-		do
-		{
-			try
-			{
-				int selectloginMenu = input.nextInt();
-				switch(selectloginMenu)
-				{
-				case 1:
-					ctrl.customerLogin();
-					loginMenu();
-					break;
-					
-				case 2:
-					System.exit(0);
-					break;
-					
-					default:
-						break;					
-			}
-			}
-			
-			catch (InputMismatchException e)
-			{
-				System.out.println("\nChoose a number from 1 to 3");
-				input.next();
-				break;
-			}
-		}
-		while (true);		
-	}
-
-	private static void printloginMenu() 
-	{
-		System.out.println("\nChoose one of the following numbers to continue");
-		System.out.println("\nEnter |1| to login");
-		System.out.println("Enter |2| to exit");		
 	}
 }

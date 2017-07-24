@@ -1,5 +1,7 @@
 package control;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 import database.ReadWrite;
@@ -100,7 +102,7 @@ public class Control
 		return user;
 	}
 
-	public void LoginMenu() 
+	public void LoginMenu() throws FileNotFoundException, IOException 
 	{
 		do
 		{
@@ -130,7 +132,7 @@ public class Control
 		while (true);		
 	}
 
-	public void customerLogin() 
+	public void customerLogin() throws FileNotFoundException, IOException 
 	{
 		String username;
 		String password;
@@ -158,7 +160,8 @@ public class Control
 					System.out.println("You have logged in. Welcome " + username + ":");
 					logIn = true;
 					
-					//String details = customerList.get(i).getUsername();
+					String details = customerList.get(i).getUsername();
+					ReadWrite.WriteDetails("activeUser.txt", details);
 				}
 			}
 			if(!logIn)

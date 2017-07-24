@@ -1,5 +1,7 @@
 package model;
 
+import database.ReadWrite;
+
 public class Bike extends Product 
 {
 	
@@ -19,5 +21,16 @@ public class Bike extends Product
 	public void setGears(String gears) 
 	{
 		this.gears = gears;
+	}
+	
+	public String toString()
+	{
+		return "ID: " + Id + " --- " + "Bike Name: " + name + ", Size: " + size + ", Colour: " + colour + ", Price: "
+				+ price + ", Gears: " + gears;
+	}
+	
+	public void writeToFile(String details)
+	{
+		ReadWrite.WriteDetails("products.txt", details);
 	}
 }
