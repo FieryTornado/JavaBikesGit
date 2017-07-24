@@ -1,7 +1,5 @@
 package model;
 
-import database.ReadWrite;
-
 public class Customer 
 {
 	private String firstName, lastName, username, password;

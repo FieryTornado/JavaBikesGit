@@ -3,28 +3,21 @@ package control;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import model.*;
+import database.ReadWrite;
+import model.Product;
 
 public class CustomerCtrl 
 {
 	Scanner input = new Scanner(System.in);
-	BikeCtrl bikeCtrl = new BikeCtrl();
+	ProductCtrl productCtrl = new ProductCtrl();
 	
+	private ArrayList<Product> productList = new ArrayList<Product>();
 	
-	private ArrayList<Customer>CustomerList;
-	private ArrayList<Product>ProductList;
-	
-	public static void CreateCustomer() 
+	public CustomerCtrl()
 	{
-		// TODO Auto-generated method stub
-		
+		productList = ReadWrite.readProduct();
 	}
 
-	public static void Login() 
-	{
-		// TODO Auto-generated method stub
-		
-	}
 	public void customerMenu() 
 	{
 		printcustomerMenu();
@@ -33,19 +26,19 @@ public class CustomerCtrl
 		switch (selectcustomerMenu)
 		{		
 		case 1:
-			bikeCtrl.BrowseBikes();
-			bikeCtrl.printBikes();
+			productCtrl.AvailableBikes();
+			productCtrl.printBikes();
 			customerMenu();
 			break;
 			
 		case 2:
-			bikeCtrl.promotions();
-			bikeCtrl.printpromotions();
+			productCtrl.promotions();
+			productCtrl.printpromotions();
 			customerMenu();
 			break;
 			
 		case 3:
-			bikeCtrl.bookBike();
+			productCtrl.bookBike();
 			customerMenu();
 			
 		case 4:

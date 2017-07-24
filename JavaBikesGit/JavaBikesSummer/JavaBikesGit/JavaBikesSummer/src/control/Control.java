@@ -11,8 +11,16 @@ public class Control
 	String details;
 	Customer cust = new Customer();
 	CustomerCtrl custCtrl = new CustomerCtrl();
+	ManagerCtrl admin = new ManagerCtrl();
 	
-	private ArrayList<Customer>customerArrayList = new ArrayList<Customer>();	
+	private ArrayList<Customer>customerList = new ArrayList<Customer>();
+	private ArrayList<Manager>managerList = new ArrayList<Manager>();
+	
+	//Constructor to load arrayList for checking users and logging in
+	public Control()
+	{
+		customerList = ReadWrite.getcustomerList();
+	}
 
 	public void printCreateCustomer() 
 	{
@@ -20,7 +28,7 @@ public class Control
 	}
 
 	// Method to create customer
-	public void CreateCustomer() 
+	public Customer CreateCustomer() 
 	{
 		//Using a do while loop so it repeats until criteria is fulfilled
 		do
@@ -60,14 +68,11 @@ public class Control
 	while (details == null);
 				
 		System.out.println("Please enter a username");
-		if(details.matches("^[a-zA-Z0-9_.-]{5,30}+"))
-		cust.setUsername(input.nextLine());
-		else
-		{
-			System.out.println("Invalid username: Can be letters and numbers and must be at least 5 characters");
-			details = null;
-		}
+		details = checkExistingUsers(input);
+		cust.setUsername(details);
 				
+		do
+		{
 		System.out.println("Please enter a password");
 		if(details.matches("^[a-zA-Z0-9_.-]{5,30}+"))
 		cust.setPassword(input.nextLine());
@@ -76,12 +81,25 @@ public class Control
 			System.out.println("Invalid password: Can be letters and numbers and must be at least 5 characters");
 			details = null;
 		}
+		}
+		while (details == null);
 			
 		System.out.println("Congratulations! You have created an account with Java Bikes");
-		//customerArrayList.add(cust);
-		//writeToFile(details);
+		return cust;
 	}
 	
+	public String checkExistingUsers(Scanner input) 
+	{
+		String user = input.nextLine();
+		for (int i =0; i<customerList.size(); i++)
+			if (customerList.get(i).getUsername().equals(user) || user.length() < 5)
+			{
+				System.out.println("Invalid input or user already exists. Please try again: ");
+				return checkExistingUsers(input);
+			}
+		return user;
+	}
+
 	public void LoginMenu() 
 	{
 		do
@@ -92,7 +110,7 @@ public class Control
 		switch(selectLoginMenu)
 		{
 		case 1:
-		Login();
+		customerLogin();
 		break;
 			
 		case 2:
@@ -112,7 +130,7 @@ public class Control
 		while (true);		
 	}
 
-	public void Login() 
+	public void customerLogin() 
 	{
 		String username;
 		String password;
@@ -120,10 +138,10 @@ public class Control
 		int attempt = 0;
 		if (attempt == 2)
 		{
-			System.out.println("You have exceeded the number of login attemps. Please ty again later");
+			System.out.println("You have exceeded 3 login attempts. Please ty again later");
 			System.exit(0);
 		}
-		boolean loggedIn = false;
+		boolean logIn = false;
 		do		
 		{
 			attempt++;
@@ -133,35 +151,71 @@ public class Control
 			System.out.println("Please enter your password");
 			password = input.nextLine();
 			
-			for(int i = 0; i<customerArrayList.size() && !loggedIn; i++)
+			for(int i = 0; i<customerList.size() && !logIn; i++)
 			{
-				if(username.equals(customerArrayList.get(i).getUsername()) &&password.equals(customerArrayList.get(i).getPassword()))
+				if(username.equals(customerList.get(i).getUsername()) &&password.equals(customerList.get(i).getPassword()))
 				{
 					System.out.println("You have logged in. Welcome " + username + ":");
-					loggedIn = true;
+					logIn = true;
+					
+					String details = customerList.get(i).getUsername();
+					ReadWrite.WriteDetails("activeUser.txt", details);
 				}
 			}
-			if(!loggedIn)
+			if(!logIn)
 			{
 				System.out.println("Wrong username or password: Please try again");
 			}
 		}
-		while (attempt < 3 && !loggedIn);
+		while (attempt < 3 && !logIn);
 		custCtrl.customerMenu();
 }
-	public void writeToFile() 
+	public void writeToFile(String details) 
 	{
-		String details = cust.getFirstName() + ";" + cust.getLastName()
-		+ ";" + cust.getUsername() + ";" + cust.getPassword() + ";";
 		ReadWrite.WriteDetails("customer.txt", details);
+	}	
+
+
+	public void Admin() 
+	{
+		String username;
+		String password;
+		
+		int attempt = 0;
+		if (attempt == 2)
+		{
+			System.out.println("You have exceeded login attempts and have been shut out. Please try again later");
+			System.exit(0);
+		}
+		boolean logIn = false;
+		do
+		{
+			attempt++;
+			System.out.println("Enter your username: ");
+			username = input.nextLine();
+			System.out.println("Enter you password: ");
+			password = input.nextLine();
+			
+			for (int i =0; i < managerList.size() &&!logIn; i++)
+			{
+				if (username.equals(managerList.get(i).getUsername()) &&password.equals(managerList.get(i).getPassword()))
+				{
+					System.out.println("You are logged in. Welcome " + username + ";");
+					logIn = true;
+				}
+			}
+			if(!logIn)
+			{
+				System.out.println("Wrong input. Please try again");
+			}
+			
+		}
+		while (attempt < 3 && !logIn);
+		admin.ManagerMenu();		
 	}
 	
-	
-
-/*public void loadDB() {
-	customerArrayList = ReadWrite.getCustomerList();
+	public void loadDB() {
+	customerList = ReadWrite.getcustomerList();
 	
 }
-*/
-
 }
