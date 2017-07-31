@@ -191,17 +191,21 @@ public class ReadWrite {
 	return productList;
 	}
 
-	/*public static ArrayList<Product> getproductList() {
+	public static ArrayList<Product> getproductList() {
 		ArrayList<Product> productList = new ArrayList<Product>();
 		Scanner input = readDetails("product.txt");
 		
 		while (input.hasNextLine())
 		{
-			productList.add(getProduct(input.nextLine()));
+			productList.add(getproductList(input.nextLine()));
 		}
 		return productList;
 	}
-	*/
+
+	private static Product getproductList(String nextLine) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 	}

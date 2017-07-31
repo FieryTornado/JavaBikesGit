@@ -1,6 +1,6 @@
 package database;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import model.*;
 
@@ -8,6 +8,25 @@ public class ProductDB {
 	
 	ArrayList<Bike>BikeList = new ArrayList<Bike>();
 	ArrayList<Ebike>EbikeList = new ArrayList<Ebike>();
+	
+	ArrayList<Product> productList = new ArrayList<Product>();
+	
+	public void productList()
+	{
+	productList.addAll(BikeList);
+	productList.addAll(EbikeList);
+	}
+	
+	public ArrayList<Product> getproductList() {
+		return productList;
+	}
+	
+	public ProductDB()
+	{
+		productList.addAll(BikeList);
+		productList.addAll(EbikeList);
+	}
+	
 	
 	public void BikeList()
 	{

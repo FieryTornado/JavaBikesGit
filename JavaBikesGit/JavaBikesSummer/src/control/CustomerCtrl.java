@@ -2,8 +2,7 @@ package control;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 import database.ReadWrite;
 import main.MainMethod;
@@ -26,16 +25,25 @@ public class CustomerCtrl
 	{
 		printcustomerMenu();
 		
-		{	
+		
+		do
+		{
+			try
+			{
 			int selectcustomerMenu = input.nextInt();
 			switch (selectcustomerMenu)
 			{
 			
 		case 1:
 			productCtrl.AvailableBikes();
-			productCtrl.printBikes();
+			productCtrl.printBikesMenu();
+			int selectBikeMenu = input.nextInt();
+			switch (selectBikeMenu)
+			{
+			case 1:
 			customerMenu();
 			break;
+			}
 			
 		case 2:
 			productCtrl.promotions();
@@ -61,7 +69,14 @@ public class CustomerCtrl
 				break;			
 		}
 		}
-	}
+			catch (InputMismatchException e)
+			{
+				System.out.println("Wrong input: Choose a number from 1 to 4 to continue");
+			}
+		}
+			while (true);
+		}
+		
 
 	private void returntoMainMenu() {
 		ReadWrite.wipeActiveUser();
@@ -72,11 +87,11 @@ public class CustomerCtrl
 	private void printcustomerMenu() 
 	{
 		System.out.println("\nChoose one of the following numbers to continue: ");
-		System.out.println("\n|1| Browse bikes");
+		System.out.println("\n|1| See available bikes");
 		System.out.println("|2| See available promotions");
 		System.out.println("|3| Book a bike");
-		System.out.println("|4| Exit process");		
-
-		}
+		System.out.println("|4| Log out");
+		System.out.println("|5| Exit process");	
+	}
 
 }

@@ -3,14 +3,17 @@ package control;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
-import database.ReadWrite;
+import database.*;
 //import database.ReadWrite;
 import model.*;
 
-public class ProductCtrl {
+public class ProductCtrl 
+{
 	
-    private ArrayList<Product>productList = new ArrayList<Product>();
+    private ArrayList<Product> productList = new ArrayList<Product>();
     private ArrayList<ActiveUser> activeUserList = new ArrayList<ActiveUser>();
+    
+    ProductDB productDB = new ProductDB();
     
     public ProductCtrl()
     {
@@ -18,35 +21,36 @@ public class ProductCtrl {
     }
     
     
-	
+	//Method to show arraylist of bikes
 	public void AvailableBikes() 
 	 {
+		System.out.println("Below are a list of available bikes");
 			for (int i = 0; i < productList.size(); i++)
 			{
 				System.out.println(productList.get(i));
 			}
 		}
+		
+	public void setproductList(ArrayList<Product> productList)
+	{
+		this.productList = productList;
+	}
 
 	public String promotions() 
 	{
 		return null;
 	}
-
-	/*public ArrayList<Product> bookBike() 
-	{
-		return productList;
-	}
-	*/
 	
 	public void bookBike() throws FileNotFoundException, IOException
 	{
 		ArrayList<Product> productList = null;
 		Scanner input = new Scanner(System.in);
 		boolean productFound = false;
+		Date time = new Date();
 		int bikeId = 0;
 		
 		System.out.println("");
-		browseBikeList();
+		AvailableBikes();
 		
 		System.out.println("Enter bike ID to rent: ");
 		bikeId = input.nextInt() -1;
@@ -69,7 +73,7 @@ public class ProductCtrl {
 					int confirmationNumber = (int) (Math.random() * 1000 + 1000);
 					
 					ReadWrite.findActiveUser();
-					System.out.println("Congratulation on booking: " + productList.get(bikeId).toString());
+					System.out.println("Congratulations on booking: " + productList.get(bikeId).toString());
 					System.out.println("Your confirmation number is: " + confirmationNumber);
 					System.out.println("Your payment will be withdrawn when you pick up your booking.");
 					break;
@@ -92,22 +96,9 @@ public class ProductCtrl {
 	}
 	
 
-	private void browseBikeList() {
-		for (int i = 0; i <productList.size(); i++)
-		{
-		System.out.println(productList.get(i));
-		}	
-		
-	}
-
-
-
-	public void printBikes() 
+	public void printBikesMenu() 
 	{
-		for (int i = 0; i <productList.size(); i++)
-		{
-		System.out.println(productList.get(i));
-		}		
+		System.out.println("\nEnter 1 to return to customer menu");
 		
 	}
 

@@ -49,21 +49,7 @@ public class MainMethod
 			// login
 			ctrl.Admin();
 			break;
-		
 		case 4:
-			//browse bikes
-			productCtrl.AvailableBikes();
-			productCtrl.printBikes();
-			
-			int selectBikeMenu = input.nextInt();
-			switch (selectBikeMenu)
-			{
-			case 1:
-			printwelcomeMenu();
-			break;
-			}
-
-		case 5:
 			// exit
 			System.exit(0);
 			break;
@@ -87,7 +73,6 @@ public class MainMethod
 			System.out.println("\n|1| Create an account" );
 			System.out.println("|2| Customer Login" );
 			System.out.println("|3| Admin Login" );
-			System.out.println("|4| Browse bikes" );
-			System.out.println("|5| End Session" );			
+			System.out.println("|4| End Session" );		
 	}
 }
