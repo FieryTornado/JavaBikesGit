@@ -22,6 +22,7 @@ public class Control
 	public Control()
 	{
 		customerList = ReadWrite.getcustomerList();
+		managerList = ReadWrite.getManagerDetails();
 	}
 
 	public void printCreateCustomer() 
@@ -178,7 +179,7 @@ public class Control
 	}	
 
 
-	public void Admin() 
+	public void Admin() throws IOException 
 	{
 		String username;
 		String password;
@@ -217,7 +218,6 @@ public class Control
 	}
 	
 	public void loadDB() {
-	customerList = ReadWrite.getcustomerList();
-	
+	customerList = ReadWrite.getcustomerList();	
 }
 }

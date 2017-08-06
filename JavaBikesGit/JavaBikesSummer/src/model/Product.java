@@ -12,6 +12,11 @@ public class Product {
 		this.Id = Id;
 	}
 	
+	public Product()
+	{
+		super();
+	}
+	
 	public String getId() {
 		return Id;
 	}

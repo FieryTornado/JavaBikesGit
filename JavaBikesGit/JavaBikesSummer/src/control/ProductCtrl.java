@@ -8,8 +8,8 @@ import database.*;
 import model.*;
 
 public class ProductCtrl 
-{
-	
+{	
+	String details;
     private ArrayList<Product> productList = new ArrayList<Product>();
     private ArrayList<ActiveUser> activeUserList = new ArrayList<ActiveUser>();
     
@@ -18,6 +18,7 @@ public class ProductCtrl
     public ProductCtrl()
     {
     	productList = ReadWrite.readProduct();
+    	ReadWrite.WriteDetails("products.txt", details);
     }
     
     

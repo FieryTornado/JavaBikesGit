@@ -13,6 +13,10 @@ public class Bike extends Product
 		this.gears = gears;
 	}
 
+	public Bike() 
+	{
+	}
+
 	public String getGears() 
 	{
 		return gears;

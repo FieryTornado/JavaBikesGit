@@ -12,6 +12,11 @@ public class Ebike extends Product
 		this.batteryCapacity = batteryCapacity;
 	}
 
+	public Ebike() 
+	{
+		//Constructor to create Ebike Object
+	}
+
 	public String getBatteryCapacity() 
 	{
 		return batteryCapacity;

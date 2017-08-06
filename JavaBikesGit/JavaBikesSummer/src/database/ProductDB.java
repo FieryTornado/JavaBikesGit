@@ -4,8 +4,8 @@ import java.util.*;
 
 import model.*;
 
-public class ProductDB {
-	
+public class ProductDB 
+{	
 	ArrayList<Bike>BikeList = new ArrayList<Bike>();
 	ArrayList<Ebike>EbikeList = new ArrayList<Ebike>();
 	

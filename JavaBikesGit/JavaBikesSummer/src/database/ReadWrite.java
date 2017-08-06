@@ -1,6 +1,8 @@
 package database;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 import model.*;
@@ -152,8 +154,7 @@ public class ReadWrite {
 					break;
 				}
 		return oneLineList;
-	}
-	
+	}	
 	
 	public static ArrayList<Product> readProduct()
 	{
@@ -192,6 +193,7 @@ public class ReadWrite {
 	}
 
 	public static ArrayList<Product> getproductList() {
+		//Path out = Paths.get("products.txt");
 		ArrayList<Product> productList = new ArrayList<Product>();
 		Scanner input = readDetails("product.txt");
 		
@@ -206,6 +208,5 @@ public class ReadWrite {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	
 	}
