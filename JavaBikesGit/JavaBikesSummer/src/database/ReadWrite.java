@@ -1,8 +1,6 @@
 package database;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 import model.*;
@@ -24,6 +22,7 @@ public class ReadWrite {
 		return customerdetails;		
 	}
 	
+	//ArrayList to get customerList
 	public static ArrayList<Customer> getcustomerList()
 	{
 		ArrayList<Customer> customerList = new ArrayList<Customer>();
@@ -35,6 +34,7 @@ public class ReadWrite {
 		return customerList;
 	}
 
+	//Write details method for all files
 	public static void WriteDetails(String file, String input) 
 	{		
 		try
@@ -50,7 +50,7 @@ public class ReadWrite {
 		}			
 	}
 	
-	
+	//Read details method for reading all files
 	public static Scanner readDetails(String file)
 	{	
 		Scanner input = new Scanner(System.in);
@@ -70,8 +70,10 @@ public class ReadWrite {
 	public static Manager getManager(String line)
 	{
 		Manager managerFromFile = new Manager();
+		//Finds every ; and changes values to string
 		String[] values = line.split(";");
 		
+		//Changing String to correct format
 		managerFromFile.setUsername(values[0]);
 		managerFromFile.setPassword(values[1]);
 		
@@ -80,10 +82,10 @@ public class ReadWrite {
 	
 	//File to read and write manager details
 	public static ArrayList<Manager> getManagerDetails()
-	{
+	{//Method to create ArrayList object
 		ArrayList<Manager> managerList = new ArrayList<Manager>();
 		Scanner input = readDetails("manager.txt");
-		
+		//Scanning each line getManager, returning manager and adding to file//
 		while (input.hasNextLine())
 		{
 			managerList.add(getManager(input.nextLine()));
@@ -92,6 +94,8 @@ public class ReadWrite {
 		return managerList;
 	}
 	
+	
+	//method to get active user list for booking
 	public static ActiveUser getActiveUser(String line)
 	{
 		ActiveUser activeUserFromFile = new ActiveUser();
@@ -101,6 +105,7 @@ public class ReadWrite {
 		return activeUserFromFile;
 	}
 	
+	//ArrayList to load all active users
 	public static ArrayList<ActiveUser> getAllActiveUserDetails()
 	{
 		ArrayList<ActiveUser> activeUserList = new ArrayList<ActiveUser>();
@@ -112,6 +117,7 @@ public class ReadWrite {
 		return activeUserList;
 	}
 	
+	//Method to find activeUser from .txt for booking
 	public static void findActiveUser() throws FileNotFoundException, IOException
 	{
 		try (BufferedReader br = new BufferedReader(new FileReader("activeUser.txt")))
@@ -124,12 +130,13 @@ public class ReadWrite {
 		}
 	}
 	
+	//defining the file the method activeuser should be wiped from
 	public static void wipeActiveUser()
 	{
 		try
 		{
-			PrintWriter pwWipe = new PrintWriter("activeUser.txt");
-			pwWipe.close();
+			PrintWriter pw = new PrintWriter("activeUser.txt");
+			pw.close();
 		}
 		catch (FileNotFoundException e)
 		{
@@ -137,25 +144,27 @@ public class ReadWrite {
 		}
 	}
 	
-	
+	//Method to print products in ArrayList
 	public static ArrayList<Product> printBike()
 	{
-		ArrayList<Product> oneLineList = new ArrayList<Product>();
-		
-		Scanner oneLine = readDetails("products.txt");
-		
-		while (oneLine.hasNextLine())
+		//Method to create ArrayList object
+		ArrayList<Product> List = new ArrayList<Product>();
+		//Method to scan .txt file
+		Scanner Line = readDetails("products.txt");
+		//Loop to print a line of item from file
+		while (Line.hasNextLine())
 		{
-			oneLineList.addAll(readProduct());
+			List.addAll(readProduct());
 		}
-		for (int i = oneLine.nextInt(); --i < oneLineList.size();)
+		for (int i = Line.nextInt(); --i < List.size();)
 				{
-					System.out.println(oneLineList.get(i));
+					System.out.println(List.get(i));
 					break;
 				}
-		return oneLineList;
+		return List;
 	}	
 	
+	//Method to read the product ArrayList
 	public static ArrayList<Product> readProduct()
 	{
 		Scanner scanner = null;
@@ -168,13 +177,14 @@ public class ReadWrite {
 			System.out.println("Error finding products.txt");
 		}
 		
+		//Method to create ArrayList object
 		ArrayList <Product> productList = new ArrayList<Product>();
 		while (scanner.hasNext())
 		{
 			String values = scanner.nextLine();
 			String valueList[] = values.split(";");
 		
-		//differentiating bikes from Ebikes
+		//differentiating bikes from Ebikes through their unique 5th values
 		if (valueList[0].equals("Bike"))
 		{
 			String gears =(valueList[5]);
@@ -183,30 +193,41 @@ public class ReadWrite {
 		}
 		else if (valueList[0].equals("Ebike"))
 		{
-			String charge = (valueList[5]);
+			String  batteryCapacity = (valueList[5]);
 					
-			productList.add(new Ebike(valueList[0], valueList[1], valueList[2], valueList[3], valueList[4], charge));
+			productList.add(new Ebike(valueList[0], valueList[1], valueList[2], valueList[3], valueList[4], batteryCapacity));
 		}
 	}
 	scanner.close();
 	return productList;
 	}
-
-	public static ArrayList<Product> getproductList() {
-		//Path out = Paths.get("products.txt");
-		ArrayList<Product> productList = new ArrayList<Product>();
-		Scanner input = readDetails("product.txt");
+	
+	//Method to get credit card from .txt
+	public static CreditCard getCreditCard(String line)
+	{
+		CreditCard creditCardFromFile = new CreditCard();
+		//Looks for every ; and changes to string
+		String[] value = line.split(";");
+		//Changes String to right format
+		creditCardFromFile.setCardHolder(value[0]);
+		creditCardFromFile.setCardNumber(value[1]);
+		creditCardFromFile.setMonthOfExpiry(value[2]);
+		creditCardFromFile.setYearOfExpiry(value[3]);
+		creditCardFromFile.setCVC(value[4]);
+		
+		return creditCardFromFile;
+	}
+	
+	//Defining the file to read and write CC
+	public static ArrayList<CreditCard> getCreditCardDetails()
+	{
+		ArrayList<CreditCard> CCList = new ArrayList <CreditCard>();
+		Scanner input = readDetails("creditCard.txt");
 		
 		while (input.hasNextLine())
 		{
-			productList.add(getproductList(input.nextLine()));
+			CCList.add(getCreditCard(input.nextLine()));
 		}
-		return productList;
+		return CCList;
 	}
-
-	private static Product getproductList(String nextLine) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	}

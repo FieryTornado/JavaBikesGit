@@ -1,6 +1,11 @@
-Bike;Red;S;100kr;100;7;
-Bike;Red;M;150kr;101;7;
-Electric Bike;Red;S;120kr;201;5h;
-Electric Bike;Red;M;170kr;202;5h;
-Bike;Red;L;200kr;103;7;
-Electric Bike;Red;L;220kr;203;5h;
+Bike;Red;S;100kr;1;7;
+Bike;Red;M;150kr;2;7;
+Electric Bike;Red;S;120kr;3;5h;
+Electric Bike;Red;M;170kr;4;5h;
+Bike;Red;L;200kr;5;7;
+Electric Bike;Red;L;220kr;6;5h;
+Electric Bike;Black;S;120kr;7;5h;
+null
+null
+null
+null

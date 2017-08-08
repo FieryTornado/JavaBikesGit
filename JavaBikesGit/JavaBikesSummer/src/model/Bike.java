@@ -3,8 +3,7 @@ package model;
 import database.ReadWrite;
 
 public class Bike extends Product 
-{
-	
+{	
 	private String gears;
 
 	public Bike(String name, String size, String colour, String price, String Id, String gears) 

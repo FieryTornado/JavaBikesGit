@@ -19,6 +19,7 @@ public class ProductCtrl
     {
     	productList = ReadWrite.readProduct();
     	ReadWrite.WriteDetails("products.txt", details);
+    	activeUserList = ReadWrite.getAllActiveUserDetails();
     }
     
     
@@ -31,11 +32,6 @@ public class ProductCtrl
 				System.out.println(productList.get(i));
 			}
 		}
-		
-	public void setproductList(ArrayList<Product> productList)
-	{
-		this.productList = productList;
-	}
 
 	public String promotions() 
 	{

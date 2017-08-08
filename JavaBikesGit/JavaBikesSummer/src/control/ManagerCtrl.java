@@ -6,14 +6,23 @@ import java.util.*;
 import database.ReadWrite;
 import model.*;
 
-public class ManagerCtrl {
-	
+public class ManagerCtrl 
+{	
 	Scanner input = new Scanner(System.in);
+	//Initialising manager
 	Manager manager = new Manager();
 	String details;
 	
+	//Initialising array list for products
 	private ArrayList<Product> productList;
+	
+	//Constructor to load productArrayList
+	public ManagerCtrl()
+	{
+		productList = ReadWrite.readProduct();
+	}
 
+	//Creation of manager manager menu
 	public void ManagerMenu() throws IOException
 	{
 		printManagerMenu();
@@ -28,9 +37,9 @@ public class ManagerCtrl {
 				case 1:					
 					Bike bike = new Bike();
 					bike = WriteBikeToDB();
-					String bikeDetails = bike.getName() + ";" + bike.getColour() + ";" + bike.getSize() + ";" + bike.getPrice() + ";" + bike.getId()
+					String details = bike.getName() + ";" + bike.getColour() + ";" + bike.getSize() + ";" + bike.getPrice() + ";" + bike.getId()
 					+ ";" + bike.getGears() + ";";
-					writeToFile(bikeDetails);
+					writeToFile(details);
 					ManagerMenu();
 					break;
 					
@@ -65,16 +74,10 @@ public class ManagerCtrl {
 		while (true);
 		}
 	
-	private String writeToFile(String details) 
+	private void writeToFile(String details) 
 	{
 		ReadWrite.WriteDetails("products.txt", details);
-		return null;
-	}
-
-	public ManagerCtrl()
-	{
-		productList = ReadWrite.readProduct();
-	}		
+	}	
 		
 		//Adding Bike to database
 		public Bike WriteBikeToDB()
@@ -187,103 +190,103 @@ public class ManagerCtrl {
 			public Ebike WriteEbikeToDB()
 			{
 				Scanner input = new Scanner(System.in);
-				String Edetails;
+				String eDetails;
 				Ebike ebike = new Ebike();
 				
 				do
 				{
 					System.out.println("Please Enter 'Electric Bike' to differ from bike: ");
-					Edetails = input.nextLine();
-					if (Edetails.matches("Electric Bike"))
+					eDetails = input.nextLine();
+					if (eDetails.matches("Electric Bike"))
 					{						
-						ebike.setName(Edetails);
+						ebike.setName(eDetails);
 					}
 					else
 					{
 						System.out.println("You must enter 'Electric Bike'");
-						Edetails = null;
+						eDetails = null;
 					}
 				}
-				while(Edetails == null);
+				while(eDetails == null);
 				
 				do
 				{
 					System.out.println("Please Enter colour: ");
-					Edetails = input.nextLine();
-					if (Edetails.matches("[A-Za-z]+"))
+					eDetails = input.nextLine();
+					if (eDetails.matches("[A-Za-z]+"))
 					{
-						ebike.setColour(Edetails);
+						ebike.setColour(eDetails);
 					}
 					else
 					{
-						System.out.println("Please Use Latin Characters");
-						Edetails = null;
+						System.out.println("Please Use Latin letters");
+						eDetails = null;
 					}						
 				}
-				while (Edetails == null);
+				while (eDetails == null);
 				
 				do
 				{
 					System.out.println("Please Enter price: Add kr at end");
-					Edetails = input.nextLine();
-					if (Edetails.matches("[0-9k[r]]+"))
+					eDetails = input.nextLine();
+					if (eDetails.matches("[0-9k[r]]+"))
 					{
-						ebike.setPrice(Edetails);
+						ebike.setPrice(eDetails);
 					}
 					else
 					{
 						System.out.println("Use numbers and add kr at end");
-						Edetails = null;
+						eDetails = null;
 					}
 				}
-				while (Edetails == null);
+				while (eDetails == null);
 				
 				do
 				{
-					System.out.println("Please Enter size: Use S, M, or L");
-					Edetails = input.nextLine();
-					if (Edetails.matches("[SML]+"))
+					System.out.println("Enter size: Use S, M, or L");
+					eDetails = input.nextLine();
+					if (eDetails.matches("[SML]+"))
 					{
-						ebike.setSize(Edetails);
+						ebike.setSize(eDetails);
 					}
 					else
 					{
 						System.out.println("Use S, M, or L");
 					}
 				}
-				while (Edetails == null);
+				while (eDetails == null);
 				
 				do
 				{
 					System.out.println("Please Enter ID: ");
-					Edetails = input.nextLine();
-					if (Edetails.matches("[0-9]+"))
+					eDetails = input.nextLine();
+					if (eDetails.matches("[0-9]+"))
 					{
-						ebike.setId(Edetails);
+						ebike.setId(eDetails);
 					}
 					else
 					{
 						System.out.println("Use numbers only");
-						Edetails = null;
+						eDetails = null;
 					}
 				}
-				while (Edetails == null);
+				while (eDetails == null);
 				
 				do
 				{
 					System.out.println("Please Enter Battery Charging Time: Add h at end for hours");
-					Edetails = input.nextLine();
-					if (Edetails.matches("[0-9h]+"))
+					eDetails = input.nextLine();
+					if (eDetails.matches("[0-9h]+"))
 					{
-						ebike.setBatteryCapacity(Edetails);
+						ebike.setBatteryCapacity(eDetails);
 					}
 					else
 					{
 						System.out.println("Use numbers and add h at end for hours.");
-						Edetails = null;
+						eDetails = null;
 					}
 				}
-				while (Edetails == null);
+				while (eDetails == null);
 				
 				System.out.println("Ebike has been added");				
 				return ebike;
@@ -293,6 +296,7 @@ public class ManagerCtrl {
 			{
 				System.out.println("\n|1| Add bike" );
 				System.out.println("|2| Add electric bike" );
+				System.out.println("|4| Log out" );
 				System.out.println("|3| Exit system" );
 			}
 			

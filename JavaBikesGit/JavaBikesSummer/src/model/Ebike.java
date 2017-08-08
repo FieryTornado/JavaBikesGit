@@ -37,5 +37,4 @@ public class Ebike extends Product
 	{
 		ReadWrite.WriteDetails("products.txt", details);
 	}
-
 }

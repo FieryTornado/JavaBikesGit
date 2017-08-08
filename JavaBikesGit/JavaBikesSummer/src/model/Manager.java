@@ -11,10 +11,11 @@ public class Manager
 		this.password = password;
 	}
 	
-	
+	//Empty constructor to load manager
 	public Manager()
 	{}
 
+	//Setters and getters for manager
 	public String getUsername() 
 	{
 		return username;
