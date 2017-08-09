@@ -68,12 +68,8 @@ public class CustomerCtrl
 			break;
 			
 		case 4:
-			ReadWrite.wipeActiveUser();
-			returntoMainMenu();
-			
-		case 5:
 			System.exit(0);
-			
+			System.out.println("You are logging out");
 			default:
 				System.out.println("Wrong input: Choose a number from 1 to 4 to continue");
 				input.next();
@@ -114,7 +110,7 @@ public class CustomerCtrl
 		{
 			System.out.println("\nPlease Enter Card Number: xxxx-xxxx-xxxx-xxxx ");
 			details = input.nextLine();
-			if (details.matches("^(\\d{4}-?^(\\d{4}-?^(\\d{4}-?^(\\d{4}-?$"))
+			if (details.matches("^(\\d{4}-?\\d{4}-?\\d{4}-?\\d{4})$"))
 			{
 				cardDetails.setCardNumber(details);
 			}
@@ -144,7 +140,7 @@ public class CustomerCtrl
 		
 		do
 		{
-			System.out.println("Please Enter Card Expiry date in: XX ");
+			System.out.println("Please Enter Year of Expiry date in: XX ");
 			details = input.nextLine();
 			if(details.matches("[0-9]+") && details.length()==2)
 			{
@@ -174,13 +170,8 @@ public class CustomerCtrl
 		}
 		while (details == null);
 		
-		return null;
-	}
-
-	private void returntoMainMenu() {
-		ReadWrite.wipeActiveUser();
-		MainMethod.printwelcomeMenu();
-		
+		System.out.println("You have completed the booking process. See you at pickup");
+		return cardDetails;
 	}
 
 	private void printcustomerMenu() 
@@ -190,7 +181,6 @@ public class CustomerCtrl
 		System.out.println("|2| See available promotions");
 		System.out.println("|3| Book a bike");
 		System.out.println("|4| Log out");
-		System.out.println("|5| Exit process");	
 	}
 
 }

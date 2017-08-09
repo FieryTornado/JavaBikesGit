@@ -11,15 +11,11 @@ public class ProductCtrl
 {	
 	String details;
     private ArrayList<Product> productList = new ArrayList<Product>();
-    private ArrayList<ActiveUser> activeUserList = new ArrayList<ActiveUser>();
-    
-    ProductDB productDB = new ProductDB();
     
     public ProductCtrl()
     {
     	productList = ReadWrite.readProduct();
     	ReadWrite.WriteDetails("products.txt", details);
-    	activeUserList = ReadWrite.getAllActiveUserDetails();
     }
     
     
@@ -43,7 +39,7 @@ public class ProductCtrl
 		ArrayList<Product> productList = null;
 		Scanner input = new Scanner(System.in);
 		boolean productFound = false;
-		Date time = new Date();
+		Date timenow = new Date();
 		int bikeId = 0;
 		
 		System.out.println("");
@@ -63,16 +59,16 @@ public class ProductCtrl
 			int choice = input.nextInt();
 			while (choice !=0)
 			{
-				if (choice ==1)
-				{
-					activeUserList = ReadWrite.getAllActiveUserDetails();
+				if (choice == 1)
+
+				{	
+					//If user chooses 1 to confirm booking, generate random confirmation and print the following
+					int confirmationNumber = (int) (Math.random() * 2000 + 1000);
 					
-					int confirmationNumber = (int) (Math.random() * 1000 + 1000);
-					
-					ReadWrite.findActiveUser();
 					System.out.println("Congratulations on booking: " + productList.get(bikeId).toString());
 					System.out.println("Your confirmation number is: " + confirmationNumber);
-					System.out.println("Your payment will be withdrawn when you pick up your booking.");
+					System.out.println("Date: " + timenow.toString());
+					System.out.println("You will now be asked to enter your Credit Card details. Payment will be deducted upon pickup.");
 					break;
 				}
 				if (choice == 2)

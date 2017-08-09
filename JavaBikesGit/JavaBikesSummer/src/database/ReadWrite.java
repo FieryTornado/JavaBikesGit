@@ -94,56 +94,6 @@ public class ReadWrite {
 		return managerList;
 	}
 	
-	
-	//method to get active user list for booking
-	public static ActiveUser getActiveUser(String line)
-	{
-		ActiveUser activeUserFromFile = new ActiveUser();
-		String[] value = line.split(";");
-		
-		activeUserFromFile.setActiveUser(value[0]);
-		return activeUserFromFile;
-	}
-	
-	//ArrayList to load all active users
-	public static ArrayList<ActiveUser> getAllActiveUserDetails()
-	{
-		ArrayList<ActiveUser> activeUserList = new ArrayList<ActiveUser>();
-		Scanner input = readDetails("activeUser.txt");
-		
-		while (input.hasNextLine())
-		{
-		}
-		return activeUserList;
-	}
-	
-	//Method to find activeUser from .txt for booking
-	public static void findActiveUser() throws FileNotFoundException, IOException
-	{
-		try (BufferedReader br = new BufferedReader(new FileReader("activeUser.txt")))
-		{
-			String line = null;
-			while ((line = br.readLine()) !=null)
-			{
-				System.out.println("Thank you for your booking " + line + ".");
-			}
-		}
-	}
-	
-	//defining the file the method activeuser should be wiped from
-	public static void wipeActiveUser()
-	{
-		try
-		{
-			PrintWriter pw = new PrintWriter("activeUser.txt");
-			pw.close();
-		}
-		catch (FileNotFoundException e)
-		{
-			System.out.println("Error finding activeuser.txt: ");
-		}
-	}
-	
 	//Method to print products in ArrayList
 	public static ArrayList<Product> printBike()
 	{
@@ -187,7 +137,7 @@ public class ReadWrite {
 		//differentiating bikes from Ebikes through their unique 5th values
 		if (valueList[0].equals("Bike"))
 		{
-			String gears =(valueList[5]);
+			String gears = (valueList[5]);
 			
 			productList.add(new Bike(valueList[0], valueList[1], valueList[2], valueList[3], valueList[4], gears));
 		}

@@ -51,13 +51,10 @@ public class ManagerCtrl
 					writeToFile(eDetails);
 					ManagerMenu();
 					break;
-					
-				case 3:
-					ReadWrite.wipeActiveUser();
-					break;
 				
-				case 4:
+				case 3:
 					System.exit(0);
+					System.out.println("You are logging out");
 					break;
 					
 					default:
@@ -296,8 +293,7 @@ public class ManagerCtrl
 			{
 				System.out.println("\n|1| Add bike" );
 				System.out.println("|2| Add electric bike" );
-				System.out.println("|4| Log out" );
-				System.out.println("|3| Exit system" );
+				System.out.println("|3| Log out" );
 			}
 			
 			public void writeToFile()

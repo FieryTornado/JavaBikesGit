@@ -52,6 +52,7 @@ public class MainMethod
 		case 4:
 			// exit
 			System.exit(0);
+			System.out.println("You are logging out");
 			break;
 			default:
 				break;
